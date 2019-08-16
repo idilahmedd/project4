@@ -5,8 +5,11 @@ import express from 'express';
 import session from 'express-session';
 import mongoose from 'mongoose';
 import passport from './config/ppConfig';
+// import {Facebook, FacebookApiException} from 'fb';
+// const fb = new Facebook(options);
 
 const app = express();
+const request = require('request-promise');  
 
 app.use(express.static(__dirname + '/../client/build'));
 app.use(express.urlencoded({extended: false}));

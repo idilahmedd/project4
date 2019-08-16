@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './App.css';
 import openNewAuthWindow from './openWindow';
 import axios from 'axios';
+//import eventDetail from './eventDetail';
 
 //We had to define this because TS needs to know 
 // the shape of our user model
@@ -21,9 +22,9 @@ const App: React.FC = () => {
   useEffect(() => {
     console.log('firing data fetch')
     if (Object.keys(user).length) {
-      axios.get(`/api/${user.facebookId}/repos`)
+      axios.get(`/api/user/events`)
         .then((res)=>{
-          setRepos(res.data)
+          console.log(res.data);
         })
     }
   }, [user])
@@ -37,16 +38,18 @@ const App: React.FC = () => {
       console.log(err)
     })
   }
-
-  var userData =Object.keys(user).length === 0 ? <p>No user</p> : <p>{user.facebookId}</p>
+  
+  var userData =Object.keys(user).length === 0 ? <p>No user</p> : <p>{user.facebookId}</p> 
   var repoData = repos.map((repo, id) => {
     return <p>{repo.name}</p>
     })
   return (
     <div className="App">
-      <a onClick={handleLogin} href= "/auth/facebook"> Log in</a>
+      <a onClick={handleLogin} href= "/auth/facebook"> Log in hello</a>
       {userData}
+      <p>Heeloo</p>
       {repoData}
+      {/* <eventDetail /> */}
     </div>
   );
 }

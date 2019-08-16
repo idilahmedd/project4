@@ -25,5 +25,9 @@ router.get('/facebook/callback',
       // Successful authentication, redirect home.
       res.render('success', { user: req.user });
    });
-
+router.get('/login/facebook',
+   passport.authenticate('facebook', {
+      scope: ['publish_actions', 'user_feed','user_events','user_friends','user_likes','publish_to_groups']
+   }
+   ));
 export default router;
