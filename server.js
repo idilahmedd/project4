@@ -1,23 +1,23 @@
 //When using TS on the backend, use ES6 style imports!
-import dotenv from 'dotenv';
+const dotenv = require('dotenv');
 dotenv.config();
-import express from 'express';
-import session from 'express-session';
-import mongoose from 'mongoose';
-import passport from './config/ppConfig';
+const express = require('express');
+const session = require('express-session');
+const mongoose = require('mongoose');
+const passport = require('./config/ppConfig');
 // import {Facebook, FacebookApiException} from 'fb';
 // const fb = new Facebook(options);
 
 const app = express();
 const request = require('request-promise');  
 
-app.use(express.static(__dirname + '/../client/build'));
+app.use(express.static(__dirname + '/client/build'));
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.set('view engine', 'ejs');
 
 //The mongoose connection string needs to be types as string
-mongoose.connect(process.env.MONGODB_URI as string)
+mongoose.connect(process.env.MONGODB_URI)
 const db = mongoose.connection;
 //Connection types dont seem to supprt db.host or db.port
 db.once('open', () => {
@@ -27,6 +27,9 @@ db.on('error', (err) => {
    console.log("ERROR", err)
 })
 
+app.get('/test', (req, res) => {
+   res.send('server is up.')
+})
 //Configure the express-session middleware
 app.use(session({
    secret: process.env.SESSION_SECRET,
@@ -37,14 +40,16 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-import authRouter from './routes/auth';
+const authRouter = require('./routes/auth');
 app.use('/auth', authRouter);
 
-import apiRouter from './routes/api';
+const apiRouter = require('./routes/api');
 app.use('/api', apiRouter);
 
+app.use('/api/events', require('./routes/events'));
+
 app.get('*', (req,res) =>{
-   res.sendFile("index.html");
+   res.sendFile(__dirname + "/client/build/index.html");
 });
 
 app.listen(process.env.PORT || 3000);

@@ -1,11 +1,11 @@
-import dotenv from 'dotenv';
+const dotenv = require('dotenv');
 dotenv.config();
-import passport from 'passport';
-//import passportGithub2 from 'passport-github2';
-import passportFacebook from 'passport-facebook';
+const passport = require('passport');
+//const passportGithub2 = ('passport-github2';
+const passportFacebook = require('passport-facebook');
 //const GithubStrategy = passportGithub2.Strategy
 const FacebookStrategy = passportFacebook.Strategy
-import User from '../models/user';
+const User = require('../models/user');
 
 // passport.use(new GithubStrategy({
 //    clientID: process.env.GITHUB_CLIENT_ID,
@@ -64,4 +64,5 @@ passport.serializeUser(function (user, cb) {
 passport.deserializeUser(function (obj, cb) {
    cb(null, obj);
 })
-export default passport
+
+module.exports = passport

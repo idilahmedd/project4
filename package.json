@@ -2,11 +2,11 @@
   "name": "oauth-react-boilerplate",
   "version": "1.0.0",
   "description": "",
-  "main": "build/server.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prestart": "tsc && cp -r ./views ./build/views && cd client && npm run build",
-    "start": "node build/server.js"
+    "prestart": "cd client && npm run build",
+    "start": "node server.js"
   },
   "author": "Idil Ahmed",
   "license": "ISC",

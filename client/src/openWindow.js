@@ -1,15 +1,10 @@
-// From 
-// By
-//Also, from this article: 
-import {IUser} from './App'
+const React = ('react');
 
-
-function openNewAuthWindow(myUrl: string): Promise<IUser>{
+function openNewAuthWindow(myUrl) {
    //Open the new window
-   const authWindow: Window = window.open(myUrl, '_blank') as Window;
-
+   const authWindow = window.open(myUrl, '_blank');
    //Listen for messages from authWindow
-   const authPromise: Promise<IUser> = new Promise((resolve, reject)=> {
+   const authPromise = new Promise((resolve, reject)=> {
       window.addEventListener('message', (msg) => {
          if (!msg.origin.includes(`${window.location.protocol}//${window.location.host}`)){
             authWindow.close();
@@ -33,5 +28,4 @@ function openNewAuthWindow(myUrl: string): Promise<IUser>{
    })
    return authPromise
 }
-
 export default openNewAuthWindow;
