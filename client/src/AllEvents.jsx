@@ -1,15 +1,33 @@
 import React from 'react';
-import EventForm from './EventForm';
+
 
 function AllEvents(props) {
+
+   // let content;
+   // if (events.length) {
+   //       content = allEvents.map((event, id) => {
+   //          return <h1 key={id}> {event.name} </h1>
+   //       })
+   // }
    var eventsData = props.allEvents.map((event, id) => {
       return <p>{event.name}</p>
    })
+
+
+
+
+
+
+
+
+   // var eventsData = props.allEvents.map((event, id) => {
+   //    return <p>{event.name}</p>
+   // })
    return (
       <div class="eventForm">
-         {props.userData}
-         {props.eventsData}
-         <EventForm handleSubmit={props.setAllEvents} setUser={props.setUser} eventsData={eventsData} />
+         {eventsData}
+         {/* {props.eventsData} */}
+         <p>List of All saved EVENTS</p>
       </div>
    )
 }

@@ -10,7 +10,8 @@ import {
 } from 'react-router-dom';
 import EventDetail from './EventDetail';
 import AllEvents from './AllEvents';
-//import EventForm from './EventForm';
+
+import EventForm from './EventForm';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faCheckSquare, faBullhorn, faUser, faHome } from '@fortawesome/free-solid-svg-icons';
@@ -23,19 +24,20 @@ library.add(fab, faCheckSquare, faBullhorn, faUser, faHome)
 function App() {
   const [user, setUser] = useState({})
   const [allEvents, setAllEvents] = useState([])
-  const [eventId, setEventId] = useState({})
-  const [savedEvents, setSavedEvents] = useState({})
+  const [eventId, setEventId] = useState('')
+  // const [savedEvents, setSavedEvents] = useState({})
 
 
-  useEffect(() => {
+  function showSavedEvents () {
     console.log('firing data fetch')
     if (Object.keys(user).length) {
       axios.get(`/api/events`)
         .then((res) => {
           console.log("IS THIS IT useEfft", res.data);
+          setAllEvents(res.data)
         })
     }
-  }, [user])
+  }
 
   function handleLogin(e) {
     e.preventDefault()
@@ -82,7 +84,9 @@ function App() {
   });
 
   var userData = Object.keys(user).length === 0 ? <p></p> : <p>Welcome, {user.name}!</p>
-
+  var eventsData = allEvents.map((event, id) => {
+    return <p>{event.name}</p>
+  })
   //ar eventsData = <p>event data</p>
 
   return (
@@ -156,9 +160,10 @@ function App() {
           </nav>
         </footer>
         </section>
-        <Route exact path='/' render={() => <Home  setUser={setUser} userData={userData} />} />
-        <Route exact path='/events' render={() => < AllEvents allEvents={allEvents} />} />
-        <Route exact path='/events/:id' render={() => < EventDetail eventId={eventId} handleInputChange={setEventId} />} />
+        <Route exact path='/' render={() => <Home setUser={setUser} userData={userData} />} />
+        <Route exact path='/events' render={() => <AllEvents allEvents={allEvents} showSavedEvents={showSavedEvents}/>} />
+        <Route exact path='/events/:id' render={() => <EventDetail eventsData={eventsData} eventId={eventId} handleInputChange={setEventId} />} />
+        <Route exact path='/events/new' render={() => <EventForm handleSubmit={setAllEvents} setUser={setUser} />} />
       </Router>
       {/* <a onClick={handleLogin} href= "/auth/facebook"> Log in hello</a> */}
       {userData}

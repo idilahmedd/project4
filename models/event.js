@@ -9,15 +9,15 @@ const eventsSchema = new Schema({
    },
    startTime: {
       type: String,
-      required: [true, 'You need to have a start time']
+      required: [false, 'You need to have a start time']
    },
    location: {
       type: String,
-      required: [true, 'You need to have a location']
+      required: [false, 'You need to have a location']
    },
    description: {
       type: String,
-      required: [true, 'You need to have a description']
+      required: [false, 'You need to have a description']
    },
    place: {
       type: String

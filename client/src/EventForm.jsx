@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import axios from 'axios';
+import {
+   Link
+} from 'react-router-dom';
 
-function EventForm({ setSavedEvents }) {
+function EventForm({ setAllEvents, user }) {
    const [name, setName] = useState("");
    const [location, setLocation] = useState("");
    const [description, setDescription] = useState("");
@@ -24,7 +27,7 @@ function EventForm({ setSavedEvents }) {
             .then(res => {
                console.log("this is the next GET request result:", res)
                console.log(res.data);
-               setSavedEvents(
+               setAllEvents(
                   res.data
                )
             })
@@ -111,7 +114,7 @@ function EventForm({ setSavedEvents }) {
                         <div class="field" style={{padding: "20px"}}>
                            
                            <div class="control">
-                           <Link to="/events/:id">
+                           <Link to="/events/">
                               <button onClick={(e) => handleSubmit(e, name, location, description, place, startTime)} type="submit" class="button is-primary">Add to Events</button>
                            </Link>
                            </div>

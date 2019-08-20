@@ -112,7 +112,7 @@ function Home(props) {
                      </div>
                      <div class="column2">
                         <h1 class="title has-text-dark has-text-centered " >Want to create your own Event?</h1>
-                        <Link to="/events">
+                        <Link to="/events/new">
                         <button class="button is-primary has-text-dark is-rounded is-large is-outlined ">Start Here!</button>
                         </Link>
                      </div>

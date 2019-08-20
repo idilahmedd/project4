@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const Event = require('../models/event');
-const axios  = require('axios');
+const axios = require('axios');
 
 
 
@@ -14,18 +14,30 @@ router.get('/events', (req, res) => {
          'Authorization': `Bearer ${req.user.accessToken}`
       }
    }
-
    axios.get(`https://graph.facebook.com/${req.user.facebookId}?fields=id,name,events,birthday,email`, config).then(response => {
       console.log('get data back: ', response.data.events)
       res.json(response.data);
-   })
+   }).then(
+
+   )
    //axios.get()
 })
 
+function getUserAccount() {
+   return axios.get('/user/12345');
+}
+function getUserPermissions() {
+   return axios.get('/user/12345/permissions');
+}
+axios.all([getUserAccount(), getUserPermissions()])
+   .then(axios.spread(function (acct, perms) {
+      // Both requests are now complete
+   }));
+
 // //GET- get all events associated with that user
-router.get("/:uid/events", (req, res) => {
-   User.findById(req.params.uid).populate('events').exec((err, user) => {
-      console.log("User at get assoc. events",user);
+router.get("/events", (req, res) => {
+   User.findById(req.params.id).populate('events').exec((err, user) => {
+      console.log("User at get assoc. events", user);
       res.status(200).json(user.events);
    })
 })
@@ -43,17 +55,17 @@ router.post('/events', (req, res) => {
          description: req.body.description
       }, function (err, event) {
          console.log("ERRRRR:   ", err)
-         console.log("THis is POST newEVENT",event)
+         console.log("THis is POST newEVENT", event)
          user.events.push(event)
-         user.save(function(err, user){
+         user.save(function (err, user) {
             if (err) res.json(err)
             res.json(user)
          })
       })
    })
 })
-//PUT /events/:id -- update a job
-router.put('/:eid', (req, res) => {
+//PUT /api/:uid/events/:id -- update an event
+router.put('/events/:eid', (req, res) => {
    Event.findByIdAndUpdate(
       req.params.eid,
       {
@@ -73,7 +85,7 @@ router.put('/:eid', (req, res) => {
 })
 
 //DELETE -delete one event
-router.delete("/:eid", (req, res) => {
+router.delete("/event/:eid", (req, res) => {
    Event.findByIdAndRemove(req.params.eid, function (err) {
       if (err) res.json(err)
       res.json({ message: "DELETED!!" })
