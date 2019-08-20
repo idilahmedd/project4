@@ -41,15 +41,25 @@ passport.use(new FacebookStrategy({
    //    });
    // }
    function (accessToken, refreshToken, profile, cb) {
-      console.log('get info back from facebook.')
+      console.log('get info back from facebook.', profile)
       User.findOne({
-         facebookId: profile.id
+         facebookId: profile.id,
+         name: profile.displayName,
+         birthday: profile.birthday,
+         email: profile.email
       }, (err, user) => {
+         console.log("FIND ERR", err)
          if (!user) {
             User.create({
-               facebookId: profile.id
+               facebookId: profile.id,
+               name: profile.displayName,
+               birthday: profile.birthday,
+               email: profile.email,
+               events: profile.events
             }, (err, user) => {
-               return cb(null, { ...user.toObject(), accessToken })
+               console.log('ERR',err)
+               console.log("USER CREATE", user)
+               return cb(null, { ...user, accessToken })
             })
          } else {
             console.log('we find user: ', user)

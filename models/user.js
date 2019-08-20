@@ -7,21 +7,21 @@ const userSchema = new Schema({
       type: Number,
       required: [true, 'You need to have a profile id']
    },
-   user_name: {
+   name: {
       type: String,
-      required: [true, 'You need to have a name']
+      required: [false, 'You need to have a name']
    },
-   user_birthday: {
+   birthday: {
       type: Date,
-      required: [true, 'You need to have a birthday']
+      required: [false, 'You need to have a birthday']
    },
-   user_email: {
+   email: {
       type: String,
-      required: [true, 'You need to have an email']
+      required: [false, 'You need to have an email']
    },
    events: [{
       type: mongoose.Schema.Types.ObjectId,
-      ret: 'Events'
+      ref: 'Events'
    }]
 })
 
@@ -30,9 +30,9 @@ userSchema.set('toObject', {
       let returnJson = {
          _id: ret._id,
          facebookId: ret.facebookId,
-         user_name: ret.user_name,
-         user_birthday: ret.user_birthday,
-         user_email: ret.user_email,
+         name: ret.name,
+         birthday: ret.birthday,
+         email: ret.email,
          events: ret.events
       }
       return returnJson;

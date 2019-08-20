@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  /* overflow-y: scroll; */
 }
 
 .App-logo {
@@ -30,4 +31,17 @@
   to {
     transform: rotate(360deg);
   }
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+}
+.eventForm {
+  margin: 300px 100px;
+  text-align: center;
+ 
+}
+.column2 {
+  color: #000;
 }

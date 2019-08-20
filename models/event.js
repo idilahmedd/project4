@@ -3,16 +3,12 @@ const mongoose = require ('mongoose');
 const { Schema } = require ('mongoose');
 
 const eventsSchema = new Schema({
-   facebookId: {
-      type: Number,
-      required: [true, 'You need to have a profile id']
-   },
    name: {
       type: String,
       required: [true, 'You need to have a name']
    },
    startTime: {
-      type: Date,
+      type: String,
       required: [true, 'You need to have a start time']
    },
    location: {
@@ -25,6 +21,10 @@ const eventsSchema = new Schema({
    },
    place: {
       type: String
+   },
+   user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
    }
 })
 
@@ -36,7 +36,8 @@ eventsSchema.set('toObject', {
          name: ret.name,
          startTime: ret.startTime,
          location: ret.location,
-         place: ret.place
+         place: ret.place,
+         description: ret.description
       }
       return returnJson;
    }
