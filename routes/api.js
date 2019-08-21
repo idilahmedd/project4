@@ -6,35 +6,67 @@ const axios = require('axios');
 
 
 
-router.get('/events', (req, res) => {
-   console.log(req.user.facebookId)
-   console.log('get event for user: ', req.user.facebookId)
-   let config = {
-      headers: {
-         'Authorization': `Bearer ${req.user.accessToken}`
-      }
-   }
-   axios.get(`https://graph.facebook.com/${req.user.facebookId}?fields=id,name,events,birthday,email`, config).then(response => {
-      console.log('get data back: ', response.data.events)
-      res.json(response.data);
-   }).then(
+// router.get('/events', (req, res) => {
+//    console.log(req.user.facebookId)
+//    console.log('get event for user: ', req.user.facebookId)
+//    let config = {
+//       headers: {
+//          'Authorization': `Bearer ${req.user.accessToken}`
+//       }
+//    }
+//    axios.get(`https://graph.facebook.com/${req.user.facebookId}?fields=id,name,events,birthday,email`, config).then(response => {
+//       console.log('get data back: ', response.data.events)
+//       res.json(response.data);
+//    }).then(
 
-   )
-   //axios.get()
-})
+//    )
 
-function getUserAccount() {
-   return axios.get('/user/12345');
-}
-function getUserPermissions() {
-   return axios.get('/user/12345/permissions');
-}
-axios.all([getUserAccount(), getUserPermissions()])
-   .then(axios.spread(function (acct, perms) {
-      // Both requests are now complete
-   }));
+// })
 
-// //GET- get all events associated with that user
+
+// axios.all([
+//    axios.get(`https://graph.facebook.com/${User}?fields=id,name,events,birthday,email`),
+//    router.get("/events"),
+// ]).then(axios.spread((events1, events2) => {
+//    console.log('FacebookEvents: ', events1.data);
+//    console.log('UserEvents: ', events2.data);
+//    res.status(200).json(user.events, response.data);
+// }));
+
+// axios.get('/events')
+//    .catch(function (error) {
+//       if (error.response) {
+//          // The request was made and the server responded with a status code
+//          // that falls out of the range of 2xx
+//          console.log(error.response.data);
+//          console.log(error.response.status);
+//          console.log(error.response.headers);
+//       } else if (error.request) {
+//          // The request was made but no response was received
+//          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+//          // http.ClientRequest in node.js
+//          console.log(error.request);
+//       } else {
+//          // Something happened in setting up the request that triggered an Error
+//          console.log('Error', error.message);
+//       }
+//       console.log(error.config);
+// });
+//OR DO THIS??
+// function getUserAccount() {
+//    return axios.get('/user/12345');
+// }
+// function getUserPermissions() {
+//    return axios.get('/user/12345/permissions');
+// }
+// axios.all([getUserAccount(), getUserPermissions()])
+//    .then(axios.spread(function (acct, perms) {
+//       // Both requests are now complete
+//    }));
+
+
+
+//GET- get all events associated with that user
 router.get("/events", (req, res) => {
    User.findById(req.params.id).populate('events').exec((err, user) => {
       console.log("User at get assoc. events", user);

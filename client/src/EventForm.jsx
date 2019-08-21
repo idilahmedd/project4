@@ -4,7 +4,7 @@ import {
    Link
 } from 'react-router-dom';
 
-function EventForm({ setAllEvents, user }) {
+function EventForm({ setSavedEvent, user }) {
    const [name, setName] = useState("");
    const [location, setLocation] = useState("");
    const [description, setDescription] = useState("");
@@ -13,7 +13,6 @@ function EventForm({ setAllEvents, user }) {
 
    function handleSubmit(e, name, location, description, place, startTime) {
       e.preventDefault()
-      // let userId = user;
       console.log("The LOCATION:", location)
       axios.post('/api/events/', {
          location: location,
@@ -27,17 +26,17 @@ function EventForm({ setAllEvents, user }) {
             .then(res => {
                console.log("this is the next GET request result:", res)
                console.log(res.data);
-               setAllEvents(
+               setSavedEvent(
                   res.data
                )
             })
       })
    }
 
-
+   
 
    return (
-      <div class="container ">
+      <div class="container is-large has-text-centered ">
          {/* // <form >
       //    <input value={name} onChange={e => setName(e.target.value)} placeholder="Event Name" type="text" name="name" required />
       //    <input value={location} onChange={e => setLocation(e.target.value)} placeholder="Location" type="text" name="location" required />
@@ -108,7 +107,7 @@ function EventForm({ setAllEvents, user }) {
                         <div class="field">
                         <label class="label" for="textarea-1">Description</label>
                         <div class="control">
-                           <textarea class="textarea" id="textarea-1" name="textarea-1">tell us about your event...</textarea>
+                           <textarea class="textarea" value={description} onChange={e => setDescription(e.target.value)}id="textarea-1" name="textarea-1">tell us about your event...</textarea>
                         </div>
                         {/* <!-- Button --> */}
                         <div class="field" style={{padding: "20px"}}>

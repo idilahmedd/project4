@@ -46,8 +46,6 @@ app.use('/auth', authRouter);
 const apiRouter = require('./routes/api');
 app.use('/api', apiRouter);
 
-// app.use('/api/events', require('./routes/events'));
-
 app.get('*', (req,res) =>{
    res.sendFile(__dirname + "/client/build/index.html");
 });

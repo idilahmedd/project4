@@ -1,35 +1,24 @@
 import React from 'react';
 
 
-function AllEvents(props) {
+function AllEvents(allEvents) {
 
-   // let content;
-   // if (events.length) {
-   //       content = allEvents.map((event, id) => {
-   //          return <h1 key={id}> {event.name} </h1>
-   //       })
-   // }
-   var eventsData = props.allEvents.map((event, id) => {
-      return <p>{event.name}</p>
-   })
-
-
-
-
-
-
-
-
-   // var eventsData = props.allEvents.map((event, id) => {
-   //    return <p>{event.name}</p>
-   // })
+   let content;
+   if (allEvents.length) {
+      //there is data
+      content = allEvents.map((savedEvent, id) => {
+         return <p onClick={() => handleEventEdit(savedEvent.id)} key={id}>{event.name}</p>
+         <button onClick={() => handleDelete(savedEvent.id)} type="submit" class="button is-primary">Delete Event</button>
+      })
+   } else {
+      //no data
+      content = <p>No Events!</p>
+   }
    return (
-      <div class="eventForm">
-         {eventsData}
-         {/* {props.eventsData} */}
-         <p>List of All saved EVENTS</p>
+      <div className="All">
+         {content}
       </div>
-   )
+   );
 }
 
 export default AllEvents
