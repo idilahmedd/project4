@@ -1,14 +1,13 @@
 import React from 'react';
 
 
-function AllEvents(allEvents) {
+function AllEvents({allEvents,handleDelete}) {
 
    let content;
    if (allEvents.length) {
       //there is data
       content = allEvents.map((savedEvent, id) => {
-         return <p onClick={() => handleEventEdit(savedEvent.id)} key={id}>{event.name}</p>
-         <button onClick={() => handleDelete(savedEvent.id)} type="submit" class="button is-primary">Delete Event</button>
+         return <div><button onClick={() => handleDelete(savedEvent.id)} type="submit" class="button is-primary">Delete Event</button></div>
       })
    } else {
       //no data

@@ -32,7 +32,6 @@ eventsSchema.set('toObject', {
    transform: function(doc, ret, options) {
       let returnJson = {
          _id: ret._id,
-         facebookId: ret.facebookId,
          name: ret.name,
          startTime: ret.startTime,
          location: ret.location,

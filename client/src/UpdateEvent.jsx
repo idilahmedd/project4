@@ -1,34 +1,17 @@
-import React from 'react'
+import React, { useState} from 'react'
 import axios from 'axios';
 import {
    Link
 } from 'react-router-dom';
 
-function UpdateEvent({setSavedEvent, user}) {
-   const [newName, setNewName] = useState("");
-   const [newLocation, setNewLocation] = useState("");
-   const [newDescription, setNewDescription] = useState("");
-   const [newPlace, setNewPlace] = useState("");
-   const [newStartTime, setNewStartTime] = useState('');
+function UpdateEvent({user, handleEditSubmit}) {
+   const [name, setNewName] = useState("");
+   const [location, setNewLocation] = useState("");
+   const [description, setNewDescription] = useState("");
+   const [place, setNewPlace] = useState("");
+   const [startTime, setNewStartTime] = useState('');
    
-   handleEditSubmit(e, name, location, description, place, startTime); {
-      e.preventDefault()
-      axios.put(`/api/events/${event._id}`, {
-         name: newName,
-         location: newLocation,
-         startTime: newStartTime,
-         place: newPlace,
-         description: newDescription,
-      }).then((response) => {
-         console.log("we got this from the put response:", response)
-         axios.get(`/api/events/${event._id}`)
-         .then((res) => {
-            console.log("Where is THIS", res)
-            setSavedEvent(res.data)
-            })
-         })
-      
-   }
+   
    return (
       <div>
          <div class="container is-large has-text-centered ">

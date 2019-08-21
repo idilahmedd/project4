@@ -1,17 +1,18 @@
 import React from 'react';
+import UpdateEvent from './UpdateEvent';
 
 
-function EventsDetail(savedEvent) {
+function EventsDetail({savedEvent}) {
    let content ;
    if (Object.keys(savedEvent).length> 0){
       //there are cats
       content = (
          <>
-         <h1>{event.name}</h1>
-         <p>Place:{event.place}</p>
-         <p>Location: {event.location}</p>
-         <p>Start Time: {event.startTime}</p>
-         <p>Description: {event.description}</p>
+         <h1>{savedEvent.name}</h1>
+         <p>Place:{savedEvent.place}</p>
+         <p>Location: {savedEvent.location}</p>
+         <p>Start Time: {savedEvent.startTime}</p>
+         <p>Description: {savedEvent.description}</p>
          
          </>
       )
