@@ -120,6 +120,9 @@ function EventForm({ setSavedEvent, user }) {
                            <Link to='/'>
                               <button type="submit" class="button is-primary"> Home</button>
                            </Link>
+                           <Link to='/events'>
+            <button type="submit" class="button is-primary"> All Events</button>
+         </Link>
                            </div>
                         </div>
                         </div>

@@ -4,10 +4,10 @@ import axios from 'axios';
 import {
    Link
 } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { fab, faFacebook } from '@fortawesome/free-brands-svg-icons'
 
-
-
-function EventsDetail({ showSavedEvent, eventId, savedEvent }) {
+function EventsDetail({ showSavedEvent, eventId, savedEvent, handleDelete }) {
 
    useEffect(() => {
       console.log("second effect")
@@ -46,12 +46,15 @@ function EventsDetail({ showSavedEvent, eventId, savedEvent }) {
             <p>Location: Seattle</p>
             <p>Start Time: 12pm</p>
             <p>Description: Come Support</p>
-            <div class="fb-share-button" 
-            data-href="http://localhost:3000/events/1" 
-            data-layout="button" data-size="large"><a target="_blank" 
-            href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A3000%2Fevents%2F1&amp;src=sdkpreparse" 
-            class="fb-xfbml-parse-ignore">Share</a>
+            <div class="fb-share-button"
+               data-href="http://localhost:3000/events/1"
+               data-layout="button" data-size="large"><a target="_blank"
+                  href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A3000%2Fevents%2F1&amp;src=sdkpreparse"
+                  class="fb-xfbml-parse-ignore">Share</a>
+
             </div>
+            <FontAwesomeIcon icon="facebook" />
+            <button onClick={(e) => handleDelete(eventId)} type="submit" class="button is-primary">Delete Event</button>
          </div>
          <p>Edit your event below:</p>
          <UpdateEvent />

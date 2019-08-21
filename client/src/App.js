@@ -13,13 +13,13 @@ import AllEvents from './AllEvents';
 
 import EventForm from './EventForm';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faCheckSquare, faBullhorn, faUser, faHome } from '@fortawesome/free-solid-svg-icons';
+import { fab, faFacebook } from '@fortawesome/free-brands-svg-icons'
+import { faCheckSquare, faBullhorn, faUser, faHome} from '@fortawesome/free-solid-svg-icons';
 import "bulma/sass/utilities/_all.sass";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
-library.add(fab, faCheckSquare, faBullhorn, faUser, faHome)
+library.add(fab, faCheckSquare, faBullhorn, faUser, faHome, faFacebook)
 
 function App() {
   const [user, setUser] = useState({})
@@ -60,8 +60,9 @@ function App() {
       console.log(err)
     })
   }
-  function handleDelete(e, name, location, description, place, startTime) {
-    e.preventDefault()
+  function handleDelete( name, location, description, place, startTime) {
+   
+    console.log("it hit the delete route!")
     axios.delete(`/api/events/${eventId}`, {
       name: name,
       place: place,
@@ -71,7 +72,7 @@ function App() {
     }).then((response) => {
       axios.get('/api/events')
         .then(res => {
-          setAllEvents(res.data)
+          setSavedEvent(res.data)
         })
     })
   }
@@ -187,7 +188,7 @@ function App() {
           <Route exact path='/' render={() => <Home setUser={setUser} userData={userData} />} />
           <Route exact path='/events' render={() => <AllEvents allEvents={allEvents} showAllEvents={showAllEvents} handleEditSubmit={handleEditSubmit} handleDelete={handleDelete} />} />
           <Route path='/new_event' render={() => <EventForm handleSubmit={setEventId} setUser={setUser} />} />
-          <Route exact path='/events/:id' render={() => <EventDetail savedEvent={savedEvent} showSavedEvent={showSavedEvent} />} />
+          <Route exact path='/events/:id' render={() => <EventDetail savedEvent={savedEvent} showSavedEvent={showSavedEvent} handleDelete={handleDelete} />} />
           </main>
           <footer class="hero-foot has-background-primary has-text-white is-medium is-fixed-bottom">
             <nav class="tabs">
