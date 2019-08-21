@@ -10,6 +10,7 @@ function EventForm({ setSavedEvent, user }) {
    const [description, setDescription] = useState("");
    const [place, setPlace] = useState("");
    const [startTime, setStartTime] = useState('');
+   
 
    function handleSubmit(e, name, location, description, place, startTime) {
       e.preventDefault()
@@ -115,6 +116,9 @@ function EventForm({ setSavedEvent, user }) {
                            <div class="control">
                            <Link to="/events/">
                               <button onClick={(e) => handleSubmit(e, name, location, description, place, startTime)} type="submit" class="button is-primary">Add to Events</button>
+                           </Link>
+                           <Link to='/'>
+                              <button type="submit" class="button is-primary"> Home</button>
                            </Link>
                            </div>
                         </div>

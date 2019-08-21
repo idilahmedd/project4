@@ -27,6 +27,8 @@ function App() {
   const [eventId, setEventId] = useState('')
   const [savedEvent, setSavedEvent] = useState({})
 
+ 
+
 
   function showAllEvents() {
     console.log('firing data fetch')
@@ -131,9 +133,9 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <section class="hero is-light is-medium has-navbar-fixed">
+        
           <div class="hero-head">
-            <nav class="navbar has-shadow  is-fixed-top">
+            <nav class="navbar has-shadow">
               <div class="container is-small">
                 <div class="navbar-brand">
 
@@ -181,6 +183,12 @@ function App() {
               <hr />
             </nav>
           </div>
+          <main>
+          <Route exact path='/' render={() => <Home setUser={setUser} userData={userData} />} />
+          <Route exact path='/events' render={() => <AllEvents allEvents={allEvents} showAllEvents={showAllEvents} handleEditSubmit={handleEditSubmit} handleDelete={handleDelete} />} />
+          <Route path='/new_event' render={() => <EventForm handleSubmit={setEventId} setUser={setUser} />} />
+          <Route exact path='/events/:id' render={() => <EventDetail savedEvent={savedEvent} showSavedEvent={showSavedEvent} />} />
+          </main>
           <footer class="hero-foot has-background-primary has-text-white is-medium is-fixed-bottom">
             <nav class="tabs">
               <div class="container has-text-white">
@@ -198,11 +206,7 @@ function App() {
               </div>
             </nav>
           </footer>
-        </section>
-        <Route exact path='/' render={() => <Home setUser={setUser} userData={userData} />} />
-        <Route exact path='/events' render={() => <AllEvents allEvents={allEvents} showAllEvents={showAllEvents} handleEditSubmit={handleEditSubmit} handleDelete={handleDelete} />} />
-        <Route exact path='/events/:id' render={() => <EventDetail savedEvent={savedEvent} showSavedEvent={showSavedEvent} />} />
-        <Route exact path='/events/new' render={() => <EventForm handleSubmit={setEventId} setUser={setUser} />} />
+        
       </Router>
       {/* <a onClick={handleLogin} href= "/auth/facebook"> Log in hello</a> */}
       {userData}

@@ -68,7 +68,7 @@ const axios = require('axios');
 
 //GET- get all events associated with that user
 router.get("/events", (req, res) => {
-   User.findById(req.params.id).populate('events').exec((err, user) => {
+   User.findById(req.body.id).populate('events').exec((err, user) => {
       console.log("User at get assoc. events", user);
       res.status(200).json(user.events);
    })

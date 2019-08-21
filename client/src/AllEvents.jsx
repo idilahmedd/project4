@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import axios from 'axios';
 
 
-function AllEvents({allEvents,handleDelete}) {
+function AllEvents({ allEvents, handleDelete ,showAllEvents}) {
+
+
+   useEffect(() => {
+      console.log("first effect")
+      axios.get('/events/').then((response) => {
+         showAllEvents()
+      })
+   }, [])
 
    let content;
    if (allEvents.length) {
