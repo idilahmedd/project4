@@ -1,12 +1,12 @@
 ### General Assembly Web Development Immersive - Project 4
 
-## Kause Event Creation Web App
+# Kause Event Creation Web App
 
-# Full Stack Application - React GraphQL Node.js Express MongoDB OAuth2
+## Full Stack Application - React GraphQL Node.js Express MongoDB OAuth2
 
 ## WireFrames - Using Adobe XD 
 [LIVE DEMO](https://xd.adobe.com/spec/47aa97d3-9d10-4947-46cf-44b373921d8a-319b/)
-
+<img width="1409" alt="Screen Shot 2019-09-11 at 8 57 37 AM" src="https://user-images.githubusercontent.com/50806842/64713902-8d178580-d472-11e9-9de4-d02c3808a464.png">
 ## Table of Contents
 
 - [Introduction](#introduction)
