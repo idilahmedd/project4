@@ -45,7 +45,7 @@ function App() {
       setSingleEvent(res.data)
       })
     }
-  }, [eventId])
+  }, [user,eventId])
 
 
   // function showAllEvents() {
@@ -158,7 +158,7 @@ function App() {
               <div class="container is-small">
                 <div class="navbar-brand">
 
-                  <a class="navbar-item">
+                  <a class="navbar-item" alt=""> 
                     <span class="icon is-large">
                       <FontAwesomeIcon icon="bullhorn" />
                     </span>
@@ -172,28 +172,28 @@ function App() {
                 </div>
                 <div id="navbarMenuHeroA" class="navbar-menu">
                   <div class="navbar-end">
-                    <a class="navbar-item is-active">
+                    <a class="navbar-item is-active" alt="">
                       <span class="icon is-large">
                         <FontAwesomeIcon icon="home" />
                       </span>
 
                     </a>
-                    <a class="navbar-item">
+                    <a class="navbar-item" alt="">
                       <span class="icon is-large">
                         <FontAwesomeIcon icon="user" />
                       </span>
                       Sign Up!
                   </a>
-                    <a class="navbar-item">
+                    <a class="navbar-item" alt="">
 
                       Log In
                   </a>
                     <span class="navbar-item">
-                      <a class="button is-primary is-inverted">
+                      <a class="button is-primary is-inverted" alt="">
                         <span class="icon">
                           <i class="fab fa-facebook"></i>
                         </span>
-                        <a onClick={handleLogin} > Facebook</a>
+                        <a onClick={handleLogin} alt=""> Facebook</a>
                       </a>
                     </span>
                   </div>
@@ -213,12 +213,12 @@ function App() {
               <div class="container has-text-white">
                 <ul>
                   <li class="is-active">Share</li>
-                  <li><a>Site Map</a></li>
-                  <li><a>Resources</a></li>
-                  <li><a>About</a></li>
-                  <li><a>Q/A</a></li>
-                  <li><a>Contact</a></li>
-                  <a href="https://bulma.io">
+                  <li><a alt="">Site Map</a></li>
+                  <li><a alt="">Resources</a></li>
+                  <li><a alt="">About</a></li>
+                  <li><a alt="">Q/A</a></li>
+                  <li><a alt="">Contact</a></li>
+                  <a href="https://bulma.io" alt="">
                     <img src="https://bulma.io/images/made-with-bulma.png" alt="Made with Bulma" width="128" height="24"></img>
                   </a>
                 </ul>

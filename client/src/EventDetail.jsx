@@ -7,7 +7,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fab, faFacebook } from '@fortawesome/free-brands-svg-icons'
 
-function EventDetail({ user, singleEvent, handleDelete }) {
+function EventDetail({ user, singleEvent, handleDelete}) {
    // state for the event
    const [event, setEvent] = useState({})
 
@@ -23,7 +23,7 @@ function EventDetail({ user, singleEvent, handleDelete }) {
       //       setEvent(res.data)
       //    })
       // }
-   }, [])
+   }, [singleEventCopy])
 
 
 
@@ -42,7 +42,7 @@ function EventDetail({ user, singleEvent, handleDelete }) {
                <p>Description: {singleEventCopy.description}</p>
                <div class="fb-share-button"
                   data-href="http://localhost:3000/events/1"
-                  data-layout="button" data-size="large"><a target="_blank"
+                  data-layout="button" data-size="large"><a target="_blank"rel="noopener noreferrer"
                      href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A3000%2Fevents%2F1&amp;src=sdkpreparse"
                      class="fb-xfbml-parse-ignore">Share</a>
 

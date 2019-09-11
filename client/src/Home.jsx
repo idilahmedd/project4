@@ -110,7 +110,7 @@ function Home(props) {
                <div class="container is-small">
                   <div class="columns">
                      <div class="column">
-                        <img src={kauseLogo}></img>
+                        <img src={kauseLogo} alt=""></img>
                      </div>
                      <div class="column2">
                         <h1 class="title has-text-dark has-text-centered " >Want to create your own Event?</h1>
