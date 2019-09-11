@@ -68,7 +68,16 @@ const axios = require('axios');
 
 //GET- get all events associated with that user
 router.get("/events", (req, res) => {
-   User.findById(req.body.id).populate('events').exec((err, user) => {
+   console.log('user in the session is: ', req.user)
+   //======= here is the error, you didn't pass the user id into body ==========
+   let id;
+   if (req.user) {
+      id =req.user._id
+   } else {
+      id = req.body.id
+   }
+   
+   User.findById(id).populate('events').exec((err, user) => {
       console.log("User at get assoc. events", user);
       res.status(200).json(user.events);
    })

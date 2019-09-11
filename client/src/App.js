@@ -25,28 +25,47 @@ function App() {
   const [user, setUser] = useState({})
   const [allEvents, setAllEvents] = useState([])
   const [eventId, setEventId] = useState('')
-  const [savedEvent, setSavedEvent] = useState({})
+  const [singleEvent, setSingleEvent] = useState({})
 
- 
-
-
-  function showAllEvents() {
-    console.log('firing data fetch')
+  useEffect(() => {
     if (Object.keys(user).length) {
-      axios.get('/api/events')
-        .then((res) => {
-          console.log("all events:", res.data);
-          setAllEvents(res.data)
-        })
-    }
+    console.log('get events for current user.')
+    axios.get('/api/events')
+      .then((res) => {
+        console.log("all events:", res.data);
+        setAllEvents(res.data)
+      })
   }
-  function showSavedEvent() {
+  }, [user])
+
+  useEffect(() => {
+    if (Object.keys(user).length) {
+    console.log("second effect")
+    axios.get(`/events/${eventId}/`).then((res) => {
+      setSingleEvent(res.data)
+      })
+    }
+  }, [eventId])
+
+
+  // function showAllEvents() {
+  //   console.log('firing data fetch')
+  //   if (Object.keys(user).length) {
+  //     axios.get('/api/events')
+  //       .then((res) => {
+  //         console.log("all events:", res.data);
+  //         setAllEvents(res.data)
+  //       })
+  //   }
+  // }
+
+  function showSingleEvent() {
     console.log('firing data fetch')
     if (Object.keys(user).length) {
       axios.get(`/api/events/${eventId}`)
         .then((res) => {
           console.log("savedEvent:", res.data);
-          setSavedEvent(res.data)
+          setSingleEvent(res.data)
         })
     }
   }
@@ -61,9 +80,8 @@ function App() {
     })
   }
   function handleDelete( name, location, description, place, startTime) {
-   
     console.log("it hit the delete route!")
-    axios.delete(`/api/events/${eventId}`, {
+    axios.delete('events/:id', {
       name: name,
       place: place,
       location: location,
@@ -72,7 +90,7 @@ function App() {
     }).then((response) => {
       axios.get('/api/events')
         .then(res => {
-          setSavedEvent(res.data)
+          setSingleEvent(res.data)
         })
     })
   }
@@ -86,10 +104,10 @@ function App() {
       description: description
     }).then((response) => {
       console.log("we got this from the put response:", response)
-      axios.get(`/api/events/${eventId}`)
+      axios.get(`/api/events/${singleEvent._id}`)
         .then((res) => {
           console.log("Where is THIS", res)
-          setSavedEvent(res.data)
+          setSingleEvent(res.data)
         })
     })
   }
@@ -186,9 +204,9 @@ function App() {
           </div>
           <main>
           <Route exact path='/' render={() => <Home setUser={setUser} userData={userData} />} />
-          <Route exact path='/events' render={() => <AllEvents allEvents={allEvents} showAllEvents={showAllEvents} handleEditSubmit={handleEditSubmit} handleDelete={handleDelete} />} />
-          <Route path='/new_event' render={() => <EventForm handleSubmit={setEventId} setUser={setUser} />} />
-          <Route exact path='/events/:id' render={() => <EventDetail savedEvent={savedEvent} showSavedEvent={showSavedEvent} handleDelete={handleDelete} />} />
+          <Route exact path='/events' render={() => <AllEvents allEvents={allEvents} setSingleEvent={setSingleEvent} />} />
+          <Route path='/new_event' render={() => <EventForm handleSubmit={setEventId} setUser={setUser} setAllEvents={setAllEvents}/>} />
+          <Route path='/events/:id' render={() => <EventDetail user={user}  singleEvent={singleEvent} handleDelete={handleDelete} handleEditSubmit={handleEditSubmit} showSingleEvent={showSingleEvent}/>} />
           </main>
           <footer class="hero-foot has-background-primary has-text-white is-medium is-fixed-bottom">
             <nav class="tabs">

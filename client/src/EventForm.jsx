@@ -4,7 +4,7 @@ import {
    Link
 } from 'react-router-dom';
 
-function EventForm({ setSavedEvent, user }) {
+function EventForm({ setAllEvents, user }) {
    const [name, setName] = useState("");
    const [location, setLocation] = useState("");
    const [description, setDescription] = useState("");
@@ -13,9 +13,9 @@ function EventForm({ setSavedEvent, user }) {
    
 
    function handleSubmit(e, name, location, description, place, startTime) {
-      e.preventDefault()
+      // e.preventDefault()
       console.log("The LOCATION:", location)
-      axios.post('/api/events/', {
+      axios.post('/api/events', {
          location: location,
          name: name,
          startTime: startTime,
@@ -27,9 +27,7 @@ function EventForm({ setSavedEvent, user }) {
             .then(res => {
                console.log("this is the next GET request result:", res)
                console.log(res.data);
-               setSavedEvent(
-                  res.data
-               )
+               setAllEvents(res.data);
             })
       })
    }
@@ -114,15 +112,15 @@ function EventForm({ setSavedEvent, user }) {
                         <div class="field" style={{padding: "20px"}}>
                            
                            <div class="control">
-                           <Link to="/events/">
+                           <Link to="/events">
                               <button onClick={(e) => handleSubmit(e, name, location, description, place, startTime)} type="submit" class="button is-primary">Add to Events</button>
                            </Link>
                            <Link to='/'>
                               <button type="submit" class="button is-primary"> Home</button>
                            </Link>
                            <Link to='/events'>
-            <button type="submit" class="button is-primary"> All Events</button>
-         </Link>
+                              <button type="submit" class="button is-primary"> All Events</button>
+                           </Link>
                            </div>
                         </div>
                         </div>

@@ -100,7 +100,7 @@ function Home(props) {
                   Kause
             </h1>
                <h2 class="subtitle">
-                  The ultimate site to create and find you next great event!
+                  The ultimate site to create and find your next great event for a Kause!
                </h2>
                {props.userData}
             </div>
