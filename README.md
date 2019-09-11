@@ -39,9 +39,9 @@ This is Portfolio Project 4 of General Assembly Web Development Immersive. The g
 
 #### Kause Screenshot
 
-<img src="">
-<img src="">
-<img src="">
+<img width="1409" alt="Screen Shot 2019-09-11 at 8 57 37 AM" src="https://user-images.githubusercontent.com/50806842/64713902-8d178580-d472-11e9-9de4-d02c3808a464.png">
+<img width="1409" alt="Screen Shot 2019-09-11 at 8 58 07 AM" src="https://user-images.githubusercontent.com/50806842/64713907-8e48b280-d472-11e9-8bbe-8e2536c4b3a3.png">
+<img width="1409" alt="Screen Shot 2019-09-11 at 8 58 45 AM" src="https://user-images.githubusercontent.com/50806842/64713915-8f79df80-d472-11e9-962c-36335fbac464.png">
 
 ## Building the App
 
