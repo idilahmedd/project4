@@ -32,7 +32,7 @@ const User = require('../models/user');
 passport.use(new FacebookStrategy({
    clientID: process.env.FACEBOOK_APP_ID,
    clientSecret: process.env.FACEBOOK_APP_SECRET,
-   callbackURL: "https://kause/herokuapp.com/auth/facebook/callback",
+   callbackURL: "https://kause.herokuapp.com/auth/facebook/callback/",
    enableProof: true
    },
    // function (accessToken, refreshToken, profile, cb) {
