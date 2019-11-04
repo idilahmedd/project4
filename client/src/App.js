@@ -178,7 +178,7 @@ function App() {
                       </span>
 
                     </a>
-                    {/* <a class="navbar-item" alt="">
+                    <a class="navbar-item" alt="">
                       <span class="icon is-large">
                         <FontAwesomeIcon icon="user" />
                       </span>
@@ -187,7 +187,7 @@ function App() {
                     <a class="navbar-item" alt="">
 
                       Log In
-                  </a> */}
+                  </a>
                     <span class="navbar-item">
                       <a class="button is-primary is-inverted" alt="">
                         <span class="icon">
