@@ -39,6 +39,7 @@ passport.use(new FacebookStrategy({
    //    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
    //       return cb(err, user);
    //    });
+
    // }
    function (accessToken, refreshToken, profile, cb) {
       console.log('get info back from facebook.', profile)
