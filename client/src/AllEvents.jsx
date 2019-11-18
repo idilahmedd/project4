@@ -22,8 +22,8 @@ function AllEvents({ allEvents, setSingleEvent }) {
                         <button type="submit" class="button is-primary" onClick={() => { setSingleEvent(event) }}> Details</button>
                      </Link>
                   </div>
-               </div>
                </article>
+               </div>
             </div>
             
       })
